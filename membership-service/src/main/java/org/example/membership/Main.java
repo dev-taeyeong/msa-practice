@@ -1,13 +1,11 @@
-package com.example.msapractice;
+package org.example.membership;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsaPracticeApplication {
-
+public class Main {
     public static void main(String[] args) {
-        SpringApplication.run(MsaPracticeApplication.class, args);
+        SpringApplication.run(Main.class, args);
     }
-
 }

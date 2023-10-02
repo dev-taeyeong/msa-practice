@@ -1,4 +1,4 @@
-package com.example.msapractice;
+package org.example.membership;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("/test")
     void test() {
-        System.out.println("Hello World!");
+        System.out.println("Hello, World!");
     }
 }
