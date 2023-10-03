@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'com.palantir.docker' version '0.35.0'
+}
+
+group = 'org.example.membership'
+version = '0.0.2-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+    implementation 'com.tngtech.archunit:archunit:1.0.1'
+    implementation project(path: ':common') // common 모듈 접근
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+docker {
+    println(tasks.bootJar.outputs.files)
+
+    // 이미지 이름
+    name rootProject.name + '-' + project.name + ":" + version
+
+    // 어떤 Dockerfile
+    dockerfile file('../Dockerfile')
+
+    // 어떤 파일들을 Dockerfile에 복사할 것인지
+    files tasks.bootJar.outputs.files
+
+    // Dockerfile에 전달할 인자
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+}
