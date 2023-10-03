@@ -24,9 +24,9 @@ public class MembershipJpaEntity {
 
     private String email;
 
-    private boolean isValid;
+    private Boolean isValid;
 
-    private boolean isCorp;
+    private Boolean isCorp;
 
     public MembershipJpaEntity(String name, String address, String email, boolean isValid, boolean isCorp) {
         this.name = name;

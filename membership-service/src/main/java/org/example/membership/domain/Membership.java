@@ -24,66 +24,66 @@ public class Membership {
             MembershipIsCorp membershipIsCorp
     ) {
         return new Membership(
-                membershipId.membershipId,
-                membershipName.membershipName,
-                membershipEmail.membershipEmail,
-                membershipAddress.membershipAddress,
-                membershipIsValid.membershipIsValid,
-                membershipIsCorp.membershipIsCorp
+                membershipId.idValue,
+                membershipName.nameValue,
+                membershipEmail.emailValue,
+                membershipAddress.addressValue,
+                membershipIsValid.isValidValue,
+                membershipIsCorp.isCorpValue
                 );
     }
 
     @Value
     public static class MembershipId {
         public MembershipId(String value) {
-            this.membershipId = value;
+            this.idValue = value;
         }
 
-        String membershipId;
+        String idValue;
     }
 
     @Value
     public static class MembershipName {
         public MembershipName(String value) {
-            this.membershipName = value;
+            this.nameValue = value;
         }
 
-        String membershipName;
+        String nameValue;
     }
 
     @Value
     public static class MembershipEmail {
         public MembershipEmail(String value) {
-            this.membershipEmail = value;
+            this.emailValue = value;
         }
 
-        String membershipEmail;
+        String emailValue;
     }
 
     @Value
     public static class MembershipAddress {
         public MembershipAddress(String value) {
-            this.membershipAddress = value;
+            this.addressValue = value;
         }
 
-        String membershipAddress;
+        String addressValue;
     }
 
     @Value
     public static class MembershipIsValid {
         public MembershipIsValid(boolean value) {
-            this.membershipIsValid = value;
+            this.isValidValue = value;
         }
 
-        boolean membershipIsValid;
+        boolean isValidValue;
     }
 
     @Value
     public static class MembershipIsCorp {
         public MembershipIsCorp(boolean value) {
-            this.membershipIsCorp = value;
+            this.isCorpValue = value;
         }
 
-        boolean membershipIsCorp;
+        boolean isCorpValue;
     }
 }
