@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'com.palantir.docker' version '0.35.0'
 }
 
 group = 'org.example.membership'
@@ -43,4 +44,20 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+docker {
+    println(tasks.bootJar.outputs.files)
+
+    // 이미지 이름
+    name rootProject.name + '-' + project.name + ":" + version
+
+    // 어떤 Dockerfile
+    dockerfile file('./Dockerfile')
+
+    // 어떤 파일들을 Dockerfile에 복사할 것인지
+    files tasks.bootJar.outputs.files
+
+    // Dockerfile에 전달할 인자
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
 }
