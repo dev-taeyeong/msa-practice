@@ -2,11 +2,11 @@ package org.example.banking.adapter.in.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NonNull
+@NoArgsConstructor
 public class RegisterBankAccountRequest {
 
     private String membershipId;
