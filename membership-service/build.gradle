@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.example.membership'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 java {
     sourceCompatibility = '17'
@@ -39,7 +39,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
@@ -53,7 +54,7 @@ docker {
     name rootProject.name + '-' + project.name + ":" + version
 
     // 어떤 Dockerfile
-    dockerfile file('./Dockerfile')
+    dockerfile file('../Dockerfile')
 
     // 어떤 파일들을 Dockerfile에 복사할 것인지
     files tasks.bootJar.outputs.files
